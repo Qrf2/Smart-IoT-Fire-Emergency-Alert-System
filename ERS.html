@@ -45,7 +45,7 @@
 
   <script>
     const firebaseConfig = {
-      apiKey: "AIzaSyAK7XEG3ABI6kOq4oLJHGSKHcuVXyQb4hY",
+      apiKey: "AIzaSyAK.... KEY HERE",
       authDomain: "smartemergencyalert-faae0.firebaseapp.com",
       databaseURL: "https://smartemergencyalert-faae0-default-rtdb.firebaseio.com",
       projectId: "smartemergencyalert-faae0",
@@ -57,7 +57,7 @@
     const db = firebase.database();
     console.log("✅ Firebase initialized");
 
-    const map = L.map('map').setView([33.56959065914976, 73.2302353671416], 14);
+    const map = L.map('map').setView([LONGITUDE, LATITUDE], 14);
     let currentLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors'
     }).addTo(map);
