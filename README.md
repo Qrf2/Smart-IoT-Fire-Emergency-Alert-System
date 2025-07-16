@@ -1,4 +1,4 @@
-<img width="1913" height="1019" alt="1" src="https://github.com/user-attachments/assets/0992f688-2133-478e-ad6d-c1fbfb32ccde" /># 🔥 Smart IoT Fire Emergency Alert System
+# 🔥 Smart IoT Fire Emergency Alert System
 
 ## 📘 Project Overview
 This project is a **real-time fire emergency detection and alert system** using the ESP32-CAM, various sensors, Firebase Realtime Database, and a Leaflet-based web dashboard. The system monitors for critical fire conditions and sends alerts with precise location data to a custom-built web interface.
