@@ -73,8 +73,8 @@ This project is a **real-time fire emergency detection and alert system** using 
   "gas": 725,
   "temp": 56.3,
   "humidity": 41.2,
-  "lat": 33.56959065914976,
-  "lon": 73.2302353671416
+  "lat": LATITUDE,
+  "lon": LONGITUDE
 }
 ```
 
