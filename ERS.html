@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Emergency Alert System</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    body, html { margin: 0; padding: 0; font-family: sans-serif; background: #0a0a0a; color: white; }
+    #map { height: 100vh; width: 100vw; filter: brightness(0.75) contrast(1.2); }
+    .control-panel {
+      position: absolute; top: 0; left: 0; right: 0;
+      background: rgba(0,0,0,0.8); padding: 12px 24px;
+      display: flex; justify-content: space-between; align-items: center; z-index: 9999;
+    }
+    .alert-container {
+      position: absolute; top: 72px; left: 24px; right: 24px;
+      z-index: 9998; color: white;
+    }
+    .alert-card {
+      background: #1a1a1a; border-left: 4px solid red;
+      padding: 16px; margin-top: 12px; border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(255,0,0,0.2);
+    }
+    .alert-header { font-weight: bold; font-size: 16px; color: #ff4444; }
+    .alert-time { font-size: 12px; color: #aaa; margin-top: 4px; }
+  </style>
+</head>
+<body>
+
+  <div class="control-panel">
+    <div><strong>🚨 Emergency Alert System</strong></div>
+    <div id="currentTime">Loading time...</div>
+  </div>
+
+  <div class="alert-container" id="alertContainer">
+    <div class="alert-card">🕓 Waiting for alerts from Firebase...</div>
+  </div>
+
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAK7XEG3ABI6kOq4oLJHGSKHcuVXyQb4hY",
+      authDomain: "smartemergencyalert-faae0.firebaseapp.com",
+      databaseURL: "https://smartemergencyalert-faae0-default-rtdb.firebaseio.com",
+      projectId: "smartemergencyalert-faae0",
+      storageBucket: "smartemergencyalert-faae0.appspot.com",
+      messagingSenderId: "784104646807",
+      appId: "1:784104646807:web:3c6302baeeea352aa9e1d2"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    console.log("✅ Firebase initialized");
+
+    const map = L.map('map').setView([33.56959065914976, 73.2302353671416], 14);
+    let currentLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+    let marker;
+
+    function updateTime() {
+      const now = new Date();
+      document.getElementById("currentTime").textContent = now.toLocaleString();
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    function showAlert(data) {
+      const container = document.getElementById("alertContainer");
+      container.innerHTML = '';
+      const card = document.createElement("div");
+      card.className = "alert-card";
+      card.innerHTML = `
+        <div class="alert-header">🔥 Fire Emergency: ${data.status || "CRITICAL"}</div>
+        <div>Fire: ${data.fire ? 'Detected' : 'None'}</div>
+        <div>Lat: ${data.lat || 0}, Lon: ${data.lon || 0}</div>
+        <div class="alert-time">Time: ${new Date(data.timestamp).toLocaleTimeString()}</div>
+      `;
+      container.appendChild(card);
+    }
+
+    function addAlertToMap(data) {
+      if (marker) map.removeLayer(marker);
+      if (data.lat && data.lon) {
+        marker = L.marker([data.lat, data.lon]).addTo(map);
+        marker.bindPopup(`<strong>🔥 Fire Detected</strong><br>Lat: ${data.lat}<br>Lon: ${data.lon}`).openPopup();
+        map.setView([data.lat, data.lon], 15);
+      }
+    }
+
+    const alertRef = db.ref('emergency_alert');
+    alertRef.on('value', (snapshot) => {
+      const data = snapshot.val();
+      console.log("📱 Firebase data received:", data);
+      if (data && data.fire === true) {
+        showAlert(data);
+        addAlertToMap(data);
+      } else {
+        document.getElementById("alertContainer").innerHTML = '<div class="alert-card">✅ System active, no fire detected.</div>';
+        if (marker) map.removeLayer(marker);
+      }
+    }, (error) => {
+      console.error("Firebase error:", error.message);
+      document.getElementById("alertContainer").innerHTML = `<div class="alert-card">❌ Firebase error: ${error.message}</div>`;
+    });
+  </script>
+</body>
+</html>
