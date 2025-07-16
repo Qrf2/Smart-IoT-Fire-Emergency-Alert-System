@@ -9,7 +9,7 @@ const char* password = "00012345";
 
 // === Firebase Info ===
 const char* firebaseHost = "https://smartemergencyalert-faae0-default-rtdb.firebaseio.com/";
-const char* firebaseAuth = "AIzaSyAK7XEG3ABI6kOq4oLJHGSKHcuVXyQb4hY"; // Updated to match Firebase config
+const char* firebaseAuth = "AIzaSy...... KEY HERE"; // Updated to match Firebase config
 
 // === Sensor Pins ===
 #define FLAME_PIN 2
