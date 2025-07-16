@@ -1,4 +1,4 @@
-# 🔥 Smart IoT Fire Emergency Alert System
+<img width="1913" height="1019" alt="1" src="https://github.com/user-attachments/assets/0992f688-2133-478e-ad6d-c1fbfb32ccde" /># 🔥 Smart IoT Fire Emergency Alert System
 
 ## 📘 Project Overview
 This project is a **real-time fire emergency detection and alert system** using the ESP32-CAM, various sensors, Firebase Realtime Database, and a Leaflet-based web dashboard. The system monitors for critical fire conditions and sends alerts with precise location data to a custom-built web interface.
@@ -8,6 +8,15 @@ This project is a **real-time fire emergency detection and alert system** using 
 - Manual fire watch systems are **inefficient** and often fail to react fast.
 - This system provides a **real-time**, **automated**, and **location-aware** response that can prevent loss of life and property.
 - It’s scalable for **smart homes**, **industrial environments**, **warehouses**, and even **smart city infrastructure**.
+
+## 📸 Screenshots
+<img width="1913" height="1019" alt="1" src="https://github.com/user-attachments/assets/7fb04421-beb7-43dd-9318-3cbcaf452bec" />
+<img width="1919" height="1079" alt="2" src="https://github.com/user-attachments/assets/55e598ea-c0a9-43d3-8ed5-2479615a14f8" />
+<img width="1919" height="1079" alt="3" src="https://github.com/user-attachments/assets/b8170784-cc5b-4b1c-a2c3-853da2c9d89d" />
+<img width="1919" height="1022" alt="4" src="https://github.com/user-attachments/assets/3a3bc98f-c6f9-40ba-bee7-c6f4ed88f179" />
+<img width="1802" height="892" alt="5" src="https://github.com/user-attachments/assets/6c6627c7-f3d7-4870-9b33-efbe46bf699d" />
+
+---
 
 ## 🎯 Objectives
 - Detect real fire emergencies using a combination of temperature, gas, and flame sensors.
@@ -89,3 +98,5 @@ This project is a **real-time fire emergency detection and alert system** using 
 This project is a practical example of how **IoT and real-time web technologies** can be used for smart alert systems. It's scalable, efficient, and a solid foundation for larger smart city safety networks.
 
 ---
+
+
