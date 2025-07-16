@@ -4,8 +4,8 @@
 #include "DHT.h"
 
 // === WiFi Credentials ===
-const char* ssid = "InsarWifi";
-const char* password = "00012345";
+const char* ssid = " WIFI NAME HERE";
+const char* password = "WIFI PASSWORD HERE";
 
 // === Firebase Info ===
 const char* firebaseHost = "https://smartemergencyalert-faae0-default-rtdb.firebaseio.com/";
